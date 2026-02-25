@@ -1054,11 +1054,11 @@
         </div>
       </div>
     </div>
-    <form onsubmit="handleSubmit(event)">
-      <input type="text" placeholder="Your Name *" required>
-      <input type="email" placeholder="Work Email *" required>
-      <input type="text" placeholder="Company / Organisation">
-      <select>
+    <form action="https://formspree.io/f/xojnybye" method="POST">
+      <input type="text" name="name" placeholder="Your Name *" required>
+      <input type="email" name="email" placeholder="Work Email *" required>
+      <input type="text" name="company" placeholder="Company / Organisation">
+      <select name="service">
         <option value="" disabled selected>I'm interested in... *</option>
         <option>GenAI Development</option>
         <option>Software Development</option>
@@ -1069,7 +1069,9 @@
         <option>Corporate Training</option>
         <option>Multiple Services</option>
       </select>
-      <textarea placeholder="Tell us about your project or training needs..."></textarea>
+      <textarea name="message" placeholder="Tell us about your project or training needs..."></textarea>
+      <input type="hidden" name="_subject" value="New enquiry from sixbysix.in">
+      <input type="hidden" name="_next" value="https://sixbysix.in">
       <button type="submit" class="btn-primary" style="width:100%; text-align:center; border:none;">Send Message →</button>
     </form>
   </div>
