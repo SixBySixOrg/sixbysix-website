@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SixBySix | Built by Professionals, For Professionals</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080A0E;
+    --white: #F0EDE6;
+    --accent: #FF4D1C;
+    --accent2: #0AF5C8;
+    --grid: #1A1D24;
+    --muted: #5A5F6B;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    backdrop-filter: blur(12px);
+    background: rgba(8,10,14,0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+  .logo span { color: var(--accent); }
+  nav ul { display: flex; gap: 2.5rem; list-style: none; }
+  nav a { color: var(--white); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; transition: opacity 0.2s; }
+  nav a:hover { opacity: 1; color: var(--accent2); }
+  .nav-cta {
+    background: var(--accent); color: var(--white) !important;
+    padding: 0.5rem 1.2rem; border-radius: 2px;
+    opacity: 1 !important; font-weight: 500;
+    transition: transform 0.2s, background 0.2s !important;
+  }
+  .nav-cta:hover { background: #ff6b42 !important; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 7rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 80% 50%, rgba(10,245,200,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(255,77,28,0.08) 0%, transparent 60%);
+  }
+
+  /* Grid pattern */
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-label::before { content: ''; width: 30px; height: 1px; background: var(--accent2); }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.8rem;
+  }
+  h1 em { font-style: normal; color: var(--accent); }
+  h1 .thin { font-weight: 400; }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(240,237,230,0.65);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s, box-shadow 0.2s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,77,28,0.4); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--accent2); color: var(--accent2); }
+
+  /* 6x6 Grid Visual */
+  .hero-visual { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; }
+  .sixgrid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+    width: min(380px, 90%);
+  }
+  .cell {
+    aspect-ratio: 1;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: var(--grid);
+    border-radius: 2px;
+    transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .cell::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .cell:hover::after { opacity: 1; }
+  .cell:hover { transform: scale(1.08); border-color: var(--accent2); }
+  .cell.lit { background: rgba(10,245,200,0.15); border-color: rgba(10,245,200,0.4); }
+  .cell.lit2 { background: rgba(255,77,28,0.15); border-color: rgba(255,77,28,0.4); }
+
+  .grid-label {
+    text-align: center;
+    margin-top: 1.2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .grid-label strong { color: var(--accent2); }
+
+  /* STATS STRIP */
+  .stats-strip {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    padding: 1.5rem 3rem;
+    gap: 3rem;
+    overflow-x: auto;
+    background: rgba(255,255,255,0.02);
+  }
+  .stat { min-width: max-content; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 2.2rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
+
+  /* SECTIONS */
+  section { padding: 6rem 3rem; }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 1rem;
+  }
+  h2 span { color: var(--accent2); }
+  .section-intro {
+    max-width: 600px;
+    color: rgba(240,237,230,0.6);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 3.5rem;
+  }
+
+  /* BY PROS FOR PROS SECTION */
+  .pros-section {
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .pros-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 520px;
+  }
+
+  .pros-left {
+    background: var(--accent);
+    padding: 5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pros-left::before {
+    content: '"';
+    position: absolute;
+    top: -1rem; left: 2rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 18rem;
+    font-weight: 800;
+    color: rgba(0,0,0,0.1);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .pros-left .big-quote {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.1;
+    color: var(--black);
+    letter-spacing: -0.03em;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .pros-left .sub-quote {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(8,10,14,0.7);
+    max-width: 380px;
+    position: relative; z-index: 1;
+  }
+
+  .pros-right {
+    background: var(--black);
+    padding: 5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .pros-right .section-label { margin-bottom: 2rem; }
+
+  .diff-list { display: flex; flex-direction: column; gap: 0; }
+
+  .diff-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .diff-row:last-child { border-bottom: none; }
+
+  .diff-them {
+    font-size: 0.82rem;
+    color: rgba(240,237,230,0.3);
+    text-decoration: line-through;
+    text-decoration-color: rgba(255,77,28,0.4);
+  }
+
+  .diff-vs {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-align: center;
+    min-width: 28px;
+  }
+
+  .diff-us {
+    font-size: 0.88rem;
+    color: var(--accent2);
+    font-weight: 500;
+    text-align: right;
+  }
+
+  /* PILLARS BOTTOM STRIP */
+  .pros-pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .pillar {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid rgba(255,255,255,0.07);
+    background: var(--grid);
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .pillar:last-child { border-right: none; }
+  .pillar::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--accent2);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .pillar:hover { background: rgba(10,245,200,0.04); }
+  .pillar:hover::after { transform: scaleX(1); }
+
+  .pillar-icon {
+    width: 40px; height: 40px;
+    border: 1px solid rgba(10,245,200,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    background: rgba(10,245,200,0.05);
+  }
+
+  .pillar h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .pillar p {
+    font-size: 0.78rem;
+    color: rgba(240,237,230,0.45);
+    line-height: 1.65;
+  }
+
+  /* MARQUEE TICKER */
+  .ticker {
+    overflow: hidden;
+    background: var(--accent);
+    padding: 0.7rem 0;
+    border-top: none;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-flex;
+    gap: 0;
+    animation: ticker 25s linear infinite;
+  }
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0 2.5rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+  .ticker-dot {
+    width: 5px; height: 5px;
+    background: rgba(0,0,0,0.35);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 768px) {
+    .pros-top { grid-template-columns: 1fr; }
+    .pros-left, .pros-right { padding: 3.5rem 1.5rem; }
+    .pros-pillars { grid-template-columns: 1fr 1fr; }
+    .pillar { padding: 1.8rem 1.2rem; }
+  }
+
+  /* EXPERTISE CARDS */
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .exp-card {
+    background: var(--black);
+    padding: 2.5rem;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .exp-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .exp-card:hover { background: var(--grid); }
+  .exp-card:hover::before { transform: scaleX(1); }
+  .exp-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+  .exp-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .exp-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin-bottom: 0.7rem;
+  }
+  .exp-card p { font-size: 0.88rem; color: rgba(240,237,230,0.55); line-height: 1.7; }
+
+  /* DIMENSIONS */
+  .dimensions-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .dim-list { display: flex; flex-direction: column; gap: 0; }
+  .dim-item {
+    display: flex; align-items: flex-start; gap: 1.2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: padding-left 0.3s;
+    cursor: default;
+  }
+  .dim-item:hover { padding-left: 0.5rem; }
+  .dim-step {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    min-width: 24px;
+    margin-top: 4px;
+  }
+  .dim-content h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+  }
+  .dim-content p { font-size: 0.85rem; color: rgba(240,237,230,0.5); line-height: 1.6; }
+  .dim-badge {
+    margin-left: auto;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+  .dim-badge.plan { color: var(--accent2); border-color: var(--accent2); }
+  .dim-badge.build { color: #FFD700; border-color: #FFD700; }
+  .dim-badge.maintain { color: var(--accent); border-color: var(--accent); }
+
+  .dim-visual {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .dim-vis-card {
+    background: var(--grid);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-radius: 2px;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .dim-vis-card:hover { transform: translateY(-4px); border-color: var(--accent2); }
+  .dim-vis-card .big { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.5rem; color: var(--accent2); line-height: 1; }
+  .dim-vis-card .small { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.4rem; }
+  .formula-box {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(255,77,28,0.12), rgba(10,245,200,0.12));
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 2px;
+  }
+  .formula-box .formula {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .formula-box .formula em { color: var(--accent); font-style: normal; }
+  .formula-box .formula-sub { font-size: 0.75rem; color: var(--muted); margin-top: 0.4rem; letter-spacing: 0.08em; }
+
+  /* INDUSTRIES */
+  .industries-section { background: var(--grid); }
+  .ind-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+  .ind-tag {
+    padding: 0.5rem 1.2rem;
+    border: 1px solid rgba(255,255,255,0.12);
+    font-size: 0.82rem;
+    cursor: default;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .ind-tag:hover { border-color: var(--accent2); color: var(--accent2); background: rgba(10,245,200,0.05); }
+
+  /* TRAINING */
+  .training-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .tc {
+    background: var(--grid);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem;
+    border-radius: 2px;
+    transition: transform 0.3s, border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .tc::after {
+    content: attr(data-num);
+    position: absolute; top: 1rem; right: 1.5rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 4rem;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+  }
+  .tc:hover { transform: translateY(-4px); border-color: rgba(10,245,200,0.3); }
+  .tc h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.6rem; }
+  .tc p { font-size: 0.82rem; color: rgba(240,237,230,0.5); line-height: 1.65; }
+  .tc .tc-tag {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent2);
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: linear-gradient(135deg, rgba(255,77,28,0.08) 0%, rgba(10,245,200,0.08) 100%);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+    padding: 6rem 3rem;
+  }
+  .cta-section h2 { margin: 0 auto 1rem; }
+  .cta-section p { color: rgba(240,237,230,0.6); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.75; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-info p { color: rgba(240,237,230,0.6); line-height: 1.75; margin-bottom: 2rem; }
+  .contact-detail { display: flex; flex-direction: column; gap: 1rem; }
+  .cdetail {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.2rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: var(--grid);
+  }
+  .cdetail-icon { font-size: 1.2rem; }
+  .cdetail-text { font-size: 0.88rem; }
+  .cdetail-text span { display: block; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.1rem; }
+
+  form { display: flex; flex-direction: column; gap: 1rem; }
+  form input, form textarea, form select {
+    background: var(--grid);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white);
+    padding: 0.9rem 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  form input::placeholder, form textarea::placeholder { color: var(--muted); }
+  form input:focus, form textarea:focus, form select:focus { border-color: var(--accent2); }
+  form textarea { resize: vertical; min-height: 120px; }
+  form select { appearance: none; cursor: pointer; }
+  form select option { background: var(--black); }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem 3rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; }
+  .footer-logo span { color: var(--accent); }
+  footer p { font-size: 0.78rem; color: var(--muted); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.78rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent2); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * {
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+  }
+  .hero-label { animation-delay: 0.1s; }
+  h1 { animation-delay: 0.25s; }
+  .hero-desc { animation-delay: 0.4s; }
+  .hero-btns { animation-delay: 0.55s; }
+  .hero-visual { animation: fadeUp 0.9s 0.3s ease forwards; opacity: 0; }
+
+  /* Animated grid cells */
+  @keyframes cellPop {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; }
+    .hero-visual { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .dimensions-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .stats-strip { padding: 1.2rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">six<span>×</span>six</div>
+  <ul>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#dimensions">How We Work</a></li>
+    <li><a href="#training">Training</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-label">sixbysix.in &nbsp;·&nbsp; By Working Professionals, For Working Professionals</div>
+    <h1>
+      <em>Built by</em><br>
+      <span class="thin">Professionals,</span><br>
+      For You.
+    </h1>
+    <p class="hero-desc">
+      SixBySix is an IT firm founded and run by industry practitioners — engineers, data scientists, and AI specialists with real-world scars. We bring that depth to your GenAI projects, tech modernisation, and professional training. No fluff. No juniors pretending. Just proven expertise.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Start a Project</a>
+      <a href="#dimensions" class="btn-ghost">Our Methodology →</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div>
+      <div class="sixgrid" id="sixgrid">
+        <!-- 36 cells -->
+      </div>
+      <p class="grid-label"><strong>6 × 6</strong> &nbsp;·&nbsp; A Vision for Limitless Excellence</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat"><div class="stat-num">6×6</div><div class="stat-label">The SixBySix Vision</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Practitioner-Led Teams</div></div>
+  <div class="stat"><div class="stat-num">GenAI</div><div class="stat-label">First Approach</div></div>
+  <div class="stat"><div class="stat-num">0</div><div class="stat-label">Junior Guesswork</div></div>
+  <div class="stat"><div class="stat-num">PAN IN</div><div class="stat-label">+ Global Delivery</div></div>
+</div>
+
+<!-- BY PROS FOR PROS -->
+<div class="pros-section">
+
+  <!-- Ticker -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <!-- repeated twice for seamless loop -->
+      <span class="ticker-item">By Working Professionals <span class="ticker-dot"></span></span>
+      <span class="ticker-item">For Working Professionals <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Real Experience. Real Results. <span class="ticker-dot"></span></span>
+      <span class="ticker-item">No Theory Without Practice <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Built in the Field <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Delivered with Depth <span class="ticker-dot"></span></span>
+      <span class="ticker-item">By Working Professionals <span class="ticker-dot"></span></span>
+      <span class="ticker-item">For Working Professionals <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Real Experience. Real Results. <span class="ticker-dot"></span></span>
+      <span class="ticker-item">No Theory Without Practice <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Built in the Field <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Delivered with Depth <span class="ticker-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- Main split panel -->
+  <div class="pros-top">
+    <div class="pros-left">
+      <p class="big-quote">We don't just know this stuff. We do it, every single day.</p>
+      <p class="sub-quote">SixBySix was founded by engineers, data scientists, and AI practitioners who are still actively working in their fields. We train the way we were trained — through real problems, production pressure, and lessons learned the hard way. What we teach on Monday, we practiced last week.</p>
+    </div>
+    <div class="pros-right">
+      <div class="section-label">What Sets Us Apart</div>
+      <div class="diff-list">
+        <div class="diff-row">
+          <div class="diff-them">Generic agency hires</div>
+          <div class="diff-vs">vs</div>
+          <div class="diff-us">Active industry practitioners</div>
+        </div>
+        <div class="diff-row">
+          <div class="diff-them">Textbook-only trainers</div>
+          <div class="diff-vs">vs</div>
+          <div class="diff-us">Trainers who shipped last week</div>
+        </div>
+        <div class="diff-row">
+          <div class="diff-them">Slide-deck consulting</div>
+          <div class="diff-vs">vs</div>
+          <div class="diff-us">Hands-dirty delivery</div>
+        </div>
+        <div class="diff-row">
+          <div class="diff-them">Junior teams on senior rates</div>
+          <div class="diff-vs">vs</div>
+          <div class="diff-us">You always know who's building</div>
+        </div>
+        <div class="diff-row">
+          <div class="diff-them">Theoretical best practices</div>
+          <div class="diff-vs">vs</div>
+          <div class="diff-us">Battle-tested patterns that work</div>
+        </div>
+        <div class="diff-row">
+          <div class="diff-them">Disappear after go-live</div>
+          <div class="diff-vs">vs</div>
+          <div class="diff-us">We stay through the messy parts</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 pillars -->
+  <div class="pros-pillars">
+    <div class="pillar">
+      <div class="pillar-icon">🛠️</div>
+      <h4>Practitioner-Led</h4>
+      <p>Every project and training program is led by someone actively working in that domain — not a career consultant.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">🎯</div>
+      <h4>Outcome-Obsessed</h4>
+      <p>We've felt the pressure of real deadlines and real clients. We care about what ships and what works, not what looks good in a deck.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">🔄</div>
+      <h4>Always Current</h4>
+      <p>Our team's day jobs keep us current. When AI moves fast, our training and delivery moves with it — not 12 months behind.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">🤝</div>
+      <h4>Peer-to-Peer</h4>
+      <p>Working with us feels like working with a brilliant colleague — candid, collaborative, and invested in your success.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-label">Core Expertise — 6 Areas</div>
+  <h2>What We <span>Build</span> For You</h2>
+  <p class="section-intro">Six domains. All staffed by specialists who have worked in these fields — not just studied them. When you work with SixBySix, you work with people who've shipped production AI, fixed real tech debt, and trained real teams.</p>
+  <div class="expertise-grid">
+    <div class="exp-card">
+      <div class="exp-num">01 / 06</div>
+      <div class="exp-icon">🤖</div>
+      <h3>Artificial Intelligence & GenAI</h3>
+      <p>Custom LLM integration, RAG pipelines, AI agents, prompt engineering, and enterprise GenAI strategy. We turn AI from hype into measurable outcomes.</p>
+    </div>
+    <div class="exp-card">
+      <div class="exp-num">02 / 06</div>
+      <div class="exp-icon">📊</div>
+      <h3>Data Science & Analytics</h3>
+      <p>From raw data to intelligent dashboards. Predictive models, ML pipelines, BI solutions, and data engineering — built to scale with your business.</p>
+    </div>
+    <div class="exp-card">
+      <div class="exp-num">03 / 06</div>
+      <div class="exp-icon">☁️</div>
+      <h3>Cloud & DevOps</h3>
+      <p>Multi-cloud architecture (AWS, Azure, GCP), CI/CD automation, infrastructure-as-code, and platform engineering for the modern enterprise.</p>
+    </div>
+    <div class="exp-card">
+      <div class="exp-num">04 / 06</div>
+      <div class="exp-icon">💻</div>
+      <h3>Software Development</h3>
+      <p>Full-stack web and mobile applications, API development, microservices, and tech debt remediation. Clean code. Scalable architecture.</p>
+    </div>
+    <div class="exp-card">
+      <div class="exp-num">05 / 06</div>
+      <div class="exp-icon">⚙️</div>
+      <h3>Automation & Enterprise Solutions</h3>
+      <p>RPA, workflow automation, ERP integrations, and intelligent process automation to eliminate bottlenecks and accelerate operations.</p>
+    </div>
+    <div class="exp-card">
+      <div class="exp-num">06 / 06</div>
+      <div class="exp-icon">🎓</div>
+      <h3>Corporate IT Training</h3>
+      <p>Upskill your teams with hands-on GenAI, Data Science, ML, and Cloud programs. Instructor-led, project-based, and built for real-world application.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIMENSIONS -->
+<section id="dimensions" style="background: rgba(255,255,255,0.015);">
+  <div class="section-label">6 Dimensions of Excellence</div>
+  <h2>How We <span>Deliver</span></h2>
+  <p class="section-intro">Our 6 delivery dimensions weren't written in a boardroom — they were refined through hundreds of real projects. Every engagement follows this structured framework because we've learned the hard way what happens when steps get skipped.</p>
+
+  <div class="dimensions-wrapper">
+    <div class="dim-list">
+      <div class="dim-item">
+        <div class="dim-step">01</div>
+        <div class="dim-content">
+          <h4>Strategy</h4>
+          <p>Discovery workshops, technology assessment, roadmap design, and business case development aligned to your goals.</p>
+        </div>
+        <div class="dim-badge plan">Planning</div>
+      </div>
+      <div class="dim-item">
+        <div class="dim-step">02</div>
+        <div class="dim-content">
+          <h4>Design</h4>
+          <p>Solution architecture, UX/UI design, data modeling, and technical blueprinting before a single line of code is written.</p>
+        </div>
+        <div class="dim-badge plan">Planning</div>
+      </div>
+      <div class="dim-item">
+        <div class="dim-step">03</div>
+        <div class="dim-content">
+          <h4>Development</h4>
+          <p>Agile engineering sprints with full transparency. We build, test, and iterate fast — without cutting corners.</p>
+        </div>
+        <div class="dim-badge build">Build</div>
+      </div>
+      <div class="dim-item">
+        <div class="dim-step">04</div>
+        <div class="dim-content">
+          <h4>Deployment</h4>
+          <p>Production rollouts, cloud provisioning, CI/CD pipelines, and change management for zero-disruption go-lives.</p>
+        </div>
+        <div class="dim-badge build">Build</div>
+      </div>
+      <div class="dim-item">
+        <div class="dim-step">05</div>
+        <div class="dim-content">
+          <h4>Optimization</h4>
+          <p>Post-launch performance tuning, model retraining, cost optimization, and continuous improvement cycles.</p>
+        </div>
+        <div class="dim-badge maintain">Maintain</div>
+      </div>
+      <div class="dim-item">
+        <div class="dim-step">06</div>
+        <div class="dim-content">
+          <h4>Support</h4>
+          <p>SLA-backed managed support, incident response, security patching, and evolving your solution as your business grows.</p>
+        </div>
+        <div class="dim-badge maintain">Maintain</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="dim-visual">
+        <div class="dim-vis-card">
+          <div class="big">6</div>
+          <div class="small">Expertise<br>Areas</div>
+        </div>
+        <div class="dim-vis-card">
+          <div class="big" style="color:var(--accent)">×</div>
+          <div class="small">Multiplied<br>By</div>
+        </div>
+        <div class="dim-vis-card">
+          <div class="big">6</div>
+          <div class="small">Delivery<br>Steps</div>
+        </div>
+        <div class="formula-box">
+          <div class="formula"><em>6 × 6</em> = ∞</div>
+          <div class="formula-sub">A vision for limitless, structured digital excellence</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH DEBT -->
+<section id="techdebt" style="background: var(--grid);">
+  <div class="section-label">Specialized Service</div>
+  <h2>Tech Debt <span>Remediation</span></h2>
+  <p class="section-intro">Legacy systems holding you back? Our tech debt specialists perform deep codebase audits, modernize architectures, migrate to cloud-native stacks, and refactor critical systems — without disrupting your operations.</p>
+  <div class="ind-grid">
+    <div class="ind-tag">🔍 Codebase Audit</div>
+    <div class="ind-tag">🏗️ Architecture Modernization</div>
+    <div class="ind-tag">☁️ Cloud Migration</div>
+    <div class="ind-tag">🔄 Microservices Refactoring</div>
+    <div class="ind-tag">🛡️ Security Hardening</div>
+    <div class="ind-tag">📦 Dependency Upgrade</div>
+    <div class="ind-tag">🧪 Test Coverage Recovery</div>
+    <div class="ind-tag">📖 Documentation Revival</div>
+    <div class="ind-tag">⚡ Performance Optimization</div>
+    <div class="ind-tag">🔗 API Modernization</div>
+  </div>
+</section>
+
+<!-- TRAINING -->
+<section id="training">
+  <div class="section-label">Corporate Training Programs</div>
+  <h2>Trained by <span>Practitioners</span></h2>
+  <p class="section-intro">Our trainers aren't academics or full-time instructors — they're active professionals currently working in AI, data, and cloud. Every program is built from real projects, real mistakes, and real shortcuts that actually work. No textbook theory without battle-tested context.</p>
+  <div class="training-cards">
+    <div class="tc" data-num="01">
+      <h3>Generative AI & LLMs</h3>
+      <p>Prompt engineering, LLM fine-tuning, RAG systems, AI agents, and enterprise ChatGPT/Copilot deployment for your teams.</p>
+      <span class="tc-tag">Most Popular</span>
+    </div>
+    <div class="tc" data-num="02">
+      <h3>Data Science & Machine Learning</h3>
+      <p>Python for data science, statistical modeling, ML algorithms, model deployment, and MLOps fundamentals.</p>
+      <span class="tc-tag">Beginner to Advanced</span>
+    </div>
+    <div class="tc" data-num="03">
+      <h3>Cloud Computing & DevOps</h3>
+      <p>AWS/Azure/GCP certification prep, Kubernetes, Docker, Terraform, and CI/CD pipeline implementation.</p>
+      <span class="tc-tag">Certification Track</span>
+    </div>
+    <div class="tc" data-num="04">
+      <h3>AI for Business Leaders</h3>
+      <p>Non-technical executive programs on AI strategy, governance, use-case identification, and managing AI-first teams.</p>
+      <span class="tc-tag">Leadership Track</span>
+    </div>
+    <div class="tc" data-num="05">
+      <h3>Data Analytics & BI</h3>
+      <p>Power BI, Tableau, SQL, and data storytelling for analysts and business teams driving data-informed decisions.</p>
+      <span class="tc-tag">Analyst Track</span>
+    </div>
+    <div class="tc" data-num="06">
+      <h3>Custom Enterprise Programs</h3>
+      <p>Bespoke multi-week programs tailored to your tech stack, industry, and learning objectives. Delivered at your campus or ours.</p>
+      <span class="tc-tag">Tailored</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="section-label">Ready to Begin?</div>
+  <h2>Let's Build Something <span>Exceptional</span></h2>
+  <p>Whether you need a GenAI solution, a full IT transformation, tech debt cleanup, or to train your teams — SixBySix brings practitioners who've done it before, not consultants figuring it out on your dime.</p>
+  <div class="cta-btns">
+    <a href="#contact" class="btn-primary">Talk to Us</a>
+    <a href="/cdn-cgi/l/email-protection#781b17160c191b0c380b11001a010b1100561116" class="btn-ghost"><span class="__cf_email__" data-cfemail="761519180217150236051f0e140f051f0e581f18">[email&#160;protected]</span></a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2>Start Your <span>Project</span></h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p>Tell us what you're building, what's broken, or what your teams need to learn. We'll respond within 24 hours with a clear path forward.</p>
+      <div class="contact-detail">
+        <div class="cdetail">
+          <div class="cdetail-icon">🌐</div>
+          <div class="cdetail-text"><span>Website</span>sixbysix.in</div>
+        </div>
+        <div class="cdetail">
+          <div class="cdetail-icon">📧</div>
+          <div class="cdetail-text"><span>Email</span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bcdfd3d2c8dddfc8fccfd5c4dec5cfd5c492d5d2">[email&#160;protected]</a></div>
+        </div>
+        <div class="cdetail">
+          <div class="cdetail-icon">📍</div>
+          <div class="cdetail-text"><span>Presence</span>India · Global Remote Delivery</div>
+        </div>
+        <div class="cdetail">
+          <div class="cdetail-icon">🕐</div>
+          <div class="cdetail-text"><span>Response Time</span>Within 24 hours</div>
+        </div>
+      </div>
+    </div>
+    <form onsubmit="handleSubmit(event)">
+      <input type="text" placeholder="Your Name *" required>
+      <input type="email" placeholder="Work Email *" required>
+      <input type="text" placeholder="Company / Organisation">
+      <select>
+        <option value="" disabled selected>I'm interested in... *</option>
+        <option>GenAI Development</option>
+        <option>Software Development</option>
+        <option>Tech Debt Remediation</option>
+        <option>Data Science & Analytics</option>
+        <option>Cloud & DevOps</option>
+        <option>Automation Solutions</option>
+        <option>Corporate Training</option>
+        <option>Multiple Services</option>
+      </select>
+      <textarea placeholder="Tell us about your project or training needs..."></textarea>
+      <button type="submit" class="btn-primary" style="width:100%; text-align:center; border:none;">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">six<span>×</span>six<span style="color:var(--muted);font-weight:300;font-size:0.9rem;">.in</span></div>
+  <p>© 2025 SixBySix Technologies. By Working Professionals, For Working Professionals.</p>
+  <div class="footer-links">
+    <a href="#expertise">Services</a>
+    <a href="#training">Training</a>
+    <a href="#contact">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#97f4f8f9e3f6f4e3d7e4feeff5eee4feefb9fef9">Email Us</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Build 6x6 grid
+const grid = document.getElementById('sixgrid');
+const labels = ['AI','DS','Cloud','Dev','Auto','Train'];
+for(let i = 0; i < 36; i++) {
+  const cell = document.createElement('div');
+  cell.className = 'cell';
+  // Highlight diagonal
+  const row = Math.floor(i/6), col = i%6;
+  if(row === col) cell.classList.add('lit');
+  if(row + col === 5) cell.classList.add('lit2');
+  grid.appendChild(cell);
+}
+
+// Animate random cells
+function animateCells() {
+  const cells = document.querySelectorAll('.cell');
+  const idx = Math.floor(Math.random() * 36);
+  cells[idx].style.opacity = '0.3';
+  setTimeout(() => { cells[idx].style.opacity = ''; }, 600);
+}
+setInterval(animateCells, 300);
+
+// Form submit
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.te
